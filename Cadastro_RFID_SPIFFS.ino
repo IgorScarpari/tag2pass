@@ -14,14 +14,8 @@
 #define LED_BLUE D8
 
 using namespace std;
-//const char* ssid = "SATC IOT";
-//const char* password = "IOT2022@";
-//const char* ssid = "Samsung";
-//const char* password = "igor1234";
-const char* ssid = "Igor";
-const char* password = "10042002";
-//const char* ssid = "Teclenet_Valdenir";
-//const char* password = "ir101823";
+const char* ssid = "SATC IOT";
+const char* password = "IOT2022@";
 
 String info_data; //Informação sobre o usuario.Ex nome, cpf, etc.
 String id_data;   //Id para o usuario.
