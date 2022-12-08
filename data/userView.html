@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Visualização dos Usuários</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <div id="logo-div">
+        <img src="logo.png" alt="logo">
+    </div>
+    <div id="container">
+        <div>
+            <h1>Usuários cadastrados</h1><br>
+            %TABLE%
+			<br><input class="buttonOpen" onclick="openMonitoring()" value="Voltar" readonly><br><br>
+        </div>
+    </div>
+</body>
+
+<script>
+
+	function openMonitoring() {
+		window.location.href = "monitoring"	
+	}
+	
+</script>
+
+</html>

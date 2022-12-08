@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Página de cadastro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <div id="logo-div">
+        <img src="logo.png" alt="logo">
+    </div>
+    <div id="container">
+        <div id="form-div">
+            <h1>Cadastro de novo usuário</h1>
+            <form action="/get">
+                <label>Aproxime sua tag do leitor:</label><br>
+                <input class="inputs" type="text" name="rfid" id="rfid-tag" value=%RFID_TAG%><br>
+                <label>Nome do usuário</label><br>
+                <input class="inputs" type="text" name="info" required="required" placeholder="Ex: Joãozinho"><br>
+				<label>Crédito (R$)</label><br>
+				<input class="inputs" type="number" step="0.01" name="credit" required="required" placeholder="Ex: R$ 50,00"><br><br>
+                <input type="submit" class="button" value="Cadastrar" readonly><br><br>
+				<input class="buttonOpen" onclick="openMonitoring()" value="Voltar" readonly><br><br>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+
+	function openMonitoring() {
+		window.location.href = "monitoring"	
+	}
+
+    setInterval(function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //document.getElementById("rfid-tag").innerHTML = this.responseText;
+                document.getElementById("rfid-tag").value = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/rfid", true);
+        xhttp.send();
+    }, 1000);
+	
+</script>
+
+</html>

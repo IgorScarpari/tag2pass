@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Página de monitoramento</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <div id="logo-div">
+        <img src="logo.png" alt="logo">
+    </div>
+    <div id="container">
+        <div id="form-div">
+            <h1>Monitoramento do Pedágio</h1>
+            <form action="/get">
+                <label>Aproxime sua tag do leitor:</label><br>
+                <input class="inputs" type="text" name="rfid" id="rfid-tag" value=%RFID_TAG%><br>
+				<h1>Valor da cobrança: R$ 5,00</h1>
+            </form>
+        </div>
+        <hr>
+        <div>
+            <br><h1 id="message">%MESSAGE%</h1><br>
+        </div>   
+        <div>
+            <form>
+				<input class="buttonSideLeft" onclick="openRegistration()" value="Cadastrar Usuário" readonly>			
+				<input class="buttonSideRight" onclick="openView()" value="Visualização de Usuários" readonly><br><br>
+            </form>
+        </div>  		
+    </div>
+</body>
+<script>
+
+	function openRegistration() {
+		window.location.href = "userRegistration"	
+	}
+	
+	function openView() {
+		window.location.href = "userView"	
+	}
+	
+    setInterval(function () {
+	
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("rfid-tag").value = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/rfid", true);
+        xhttp.send();
+    }, 1000);
+	
+	setInterval(function () {
+	
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("message").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/message", true);
+        xhttp.send();
+    }, 500);
+	
+</script>
+
+</html>
